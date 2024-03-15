@@ -1,0 +1,60 @@
+﻿Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+Function.Intrinsic.UI.UsePixels ' Allows you to use Pixels instead of Twips throughout
+'11881 - Order Header - Pre Delete
+'12241 - Order Lines - Pre Delete
+
+F.ODBC.Connection!con.OpenCompanyConnection(500)
+
+F.Intrinsic.Control.SelectCase(V.Caller.Hook)
+	F.Intrinsic.Control.Case(11881)
+		F.Intrinsic.Control.CallSub(DeleteHeader)
+		F.Intrinsic.Control.EndSelect
+	F.Intrinsic.Control.Case(12241)
+		F.Intrinsic.Control.CallSub(DeleteLine)
+		F.Intrinsic.Control.EndSelect
+	F.Intrinsic.Control.CaseElse
+F.Intrinsic.Control.EndSelect
+
+F.ODBC.Connection!con.Close
+Program.Sub.Main.End
+
+Program.Sub.DeleteHeader.Start
+V.Local..BulkDeclareString(sSQL,sOrderNo)
+V.Local..BulkDeclareLong(iRet)
+'V.Passed.000003 - Order Num
+'check for matching records in GCG_6109_PaymentHistory
+F.Intrinsic.String.LPad(V.Passed.000003,"0",7,V.Local.sOrderNo)
+F.Intrinsic.String.Build("SELECT COUNT(*) FROM GCG_6109_PaymentHistory WHERE ORDER_NO='{0}'",V.Local.sOrderNo,V.Local.sSQL)
+F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.iRet)
+
+F.Intrinsic.Control.If(V.Local.iRet,>,0)
+	V.Passed.777777.Set(1)
+	F.Intrinsic.UI.Msgbox("Payments exist for this sales order.  Delete cancelled.")
+F.Intrinsic.Control.EndIf
+Program.Sub.DeleteHeader.End
+
+Program.Sub.DeleteLine.Start
+V.Local..BulkDeclareString(sSQL,sOrderNo,sOrderLine)
+V.Local..BulkDeclareLong(iRet)
+'V.Passed.000060 - Order Num
+'V.Passed.000051 - Order Line
+'check for matching records in GCG_6109_PaymentHistory
+F.Intrinsic.String.LPad(V.Passed.000060,"0",7,V.Local.sOrderNo)
+F.Intrinsic.String.LPad(V.Passed.000051,"0",3,V.Local.sOrderLine)
+F.Intrinsic.String.Concat(V.Local.sOrderLine,"0",V.Local.sOrderLine)
+F.Intrinsic.String.Build("SELECT COUNT(*) FROM GCG_6109_PaymentHistory WHERE ORDER_NO='{0}' AND ORDER_LINE='{1}'",V.Local.sOrderNo,V.Local.sSQL)
+F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.iRet)
+
+F.Intrinsic.Control.If(V.Local.iRet,>,0)
+	V.Passed.777777.Set(1)
+	F.Intrinsic.UI.Msgbox("Payments exist for this sales order line.  Delete cancelled.")
+F.Intrinsic.Control.EndIf
+Program.Sub.DeleteLine.End
+
+Program.Sub.Comments.Start
+${$5$}$3.0.0.0$}$1
+${$6$}$jwithrow$}$20201102224328773$}$D95tSYIikIvF+oq+s87EtBQePACEH+EyMWXrpgUGkkbCzeoWO67/nJG9naaTe2tMYuir6NY3bHqusxeo8bgGdQ==
+Program.Sub.Comments.End
