@@ -1,0 +1,775 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmMain..Create(DashForm)
+Gui.frmMain..Caption("Process Payments in Advance 6109 2022.11.03.00")
+Gui.frmMain..Size(1036,792)
+Gui.frmMain..MinX(0)
+Gui.frmMain..MinY(0)
+Gui.frmMain..Position(0,0)
+Gui.frmMain..AlwaysOnTop(True)
+Gui.frmMain..FontName("Tahoma")
+Gui.frmMain..FontSize(8.25)
+Gui.frmMain..ControlBox(True)
+Gui.frmMain..MaxButton(False)
+Gui.frmMain..MinButton(True)
+Gui.frmMain..MousePointer(0)
+Gui.frmMain..Moveable(True)
+Gui.frmMain..Sizeable(False)
+Gui.frmMain..ShowInTaskBar(True)
+Gui.frmMain..TitleBar(True)
+Gui.frmMain..BarShareButton(False,False,False,False)
+Gui.frmMain..Event(UnLoad,frmMain_UnLoad)
+Gui.frmMain.txtCustomerSearch.Create(TextBox,"",True,90,20,0,24,25,True,0,"Tahoma",8.25,,1)
+Gui.frmMain.txtCustomerSearch.MaxLength(6)
+Gui.frmMain.txtCustomerSearch.DefaultValue("987654")
+Gui.frmMain.cmdCustomerSearch.Create(Button)
+Gui.frmMain.cmdCustomerSearch.Enabled(True)
+Gui.frmMain.cmdCustomerSearch.Visible(True)
+Gui.frmMain.cmdCustomerSearch.Zorder(0)
+Gui.frmMain.cmdCustomerSearch.Size(23,23)
+Gui.frmMain.cmdCustomerSearch.Position(117,24)
+Gui.frmMain.cmdCustomerSearch.Caption("")
+Gui.frmMain.cmdCustomerSearch.FontName("Tahoma")
+Gui.frmMain.cmdCustomerSearch.FontSize(8.25)
+Gui.frmMain.cmdCustomerSearch.SvgPicture("icon_browser_color")
+Gui.frmMain.cmdCustomerSearch.Event(Click,cmdCustomerSearch_Click)
+Gui.frmMain.lblCustomerSearch.Create(Label,"CLIENTE",True,44,13,0,24,7,True,0,"Tahoma",8.25,,0,0)
+Gui.frmMain.lblCustomerSearch.BorderStyle(0)
+Gui.frmMain.lblCustomerSearch.FontStyle(True,False,False,False,False)
+Gui.frmMain.lblSalesOrderSearch.Create(Label,"PEDIDO",True,42,13,0,147,7,True,0,"Tahoma",8.25,,0,0)
+Gui.frmMain.lblSalesOrderSearch.BorderStyle(0)
+Gui.frmMain.lblSalesOrderSearch.FontStyle(True,False,False,False,False)
+Gui.frmMain.txtSalesOrderSearch.Create(TextBox,"",True,90,20,0,147,25,True,0,"Tahoma",8.25,,1)
+Gui.frmMain.cmdSalesOrderSearch.Create(Button)
+Gui.frmMain.cmdSalesOrderSearch.Enabled(True)
+Gui.frmMain.cmdSalesOrderSearch.Visible(True)
+Gui.frmMain.cmdSalesOrderSearch.Zorder(0)
+Gui.frmMain.cmdSalesOrderSearch.Size(23,23)
+Gui.frmMain.cmdSalesOrderSearch.Position(240,24)
+Gui.frmMain.cmdSalesOrderSearch.Caption("")
+Gui.frmMain.cmdSalesOrderSearch.FontName("Tahoma")
+Gui.frmMain.cmdSalesOrderSearch.FontSize(8.25)
+Gui.frmMain.cmdSalesOrderSearch.SvgPicture("icon_browser_color")
+Gui.frmMain.cmdSalesOrderSearch.Event(Click,cmdSalesOrderSearch_Click)
+Gui.frmMain.gsgcSOLines.Create(GsGridControl)
+Gui.frmMain.gsgcSOLines.Enabled(True)
+Gui.frmMain.gsgcSOLines.Visible(True)
+Gui.frmMain.gsgcSOLines.Zorder(0)
+Gui.frmMain.gsgcSOLines.Size(1029,389)
+Gui.frmMain.gsgcSOLines.Position(3,89)
+Gui.frmMain.gsgcSOLines.Anchor(1)
+Gui.frmMain.gsgcSOLines.Event(RowCellClick,GsGC_RowCellClick_Universal)
+Gui.frmMain.gsgcSOLines.Event(CellValueChanged,gsgcSOLines_CellValueChanged)
+Gui.frmMain.GsgcARBatches.Create(GsGridControl)
+Gui.frmMain.GsgcARBatches.Enabled(True)
+Gui.frmMain.GsgcARBatches.Visible(True)
+Gui.frmMain.GsgcARBatches.Zorder(0)
+Gui.frmMain.GsgcARBatches.Size(1029,242)
+Gui.frmMain.GsgcARBatches.Position(3,481)
+Gui.frmMain.GsgcARBatches.Anchor(2)
+Gui.frmMain.GsgcARBatches.Event(RowCellClick,GsGC_RowCellClick_Universal)
+Gui.frmMain.cmdSplitAsSalesRule.Create(Button)
+Gui.frmMain.cmdSplitAsSalesRule.Enabled(True)
+Gui.frmMain.cmdSplitAsSalesRule.Visible(True)
+Gui.frmMain.cmdSplitAsSalesRule.Zorder(0)
+Gui.frmMain.cmdSplitAsSalesRule.Size(130,23)
+Gui.frmMain.cmdSplitAsSalesRule.Position(24,55)
+Gui.frmMain.cmdSplitAsSalesRule.Caption("PRORRATEAR")
+Gui.frmMain.cmdSplitAsSalesRule.FontName("Tahoma")
+Gui.frmMain.cmdSplitAsSalesRule.FontSize(8.25)
+Gui.frmMain.cmdSplitAsSalesRule.Event(Click,cmdSplitAsSalesRule_Click)
+Gui.frmMain.cmdSplitAsSalesRule.FontStyle(True,False,False,False,False)
+Gui.frmMain.cmdAccept_Save.Create(Button)
+Gui.frmMain.cmdAccept_Save.Enabled(True)
+Gui.frmMain.cmdAccept_Save.Visible(True)
+Gui.frmMain.cmdAccept_Save.Zorder(0)
+Gui.frmMain.cmdAccept_Save.Size(75,23)
+Gui.frmMain.cmdAccept_Save.Position(159,55)
+Gui.frmMain.cmdAccept_Save.Caption("ACEPTAR")
+Gui.frmMain.cmdAccept_Save.FontName("Tahoma")
+Gui.frmMain.cmdAccept_Save.FontSize(8.25)
+Gui.frmMain.cmdAccept_Save.Event(Click,cmdAccept_Save_Click)
+Gui.frmMain.cmdAccept_Save.FontStyle(True,False,False,False,False)
+Gui.frmMain.cmdSearch.Create(Button)
+Gui.frmMain.cmdSearch.Enabled(True)
+Gui.frmMain.cmdSearch.Visible(True)
+Gui.frmMain.cmdSearch.Zorder(0)
+Gui.frmMain.cmdSearch.Size(92,23)
+Gui.frmMain.cmdSearch.Position(270,24)
+Gui.frmMain.cmdSearch.Caption("ACTUALIZAR")
+Gui.frmMain.cmdSearch.FontName("Tahoma")
+Gui.frmMain.cmdSearch.FontSize(8.25)
+Gui.frmMain.cmdSearch.Event(Click,cmdSearch_Click)
+Gui.frmMain.cmdSearch.FontStyle(True,False,False,False,False)
+Gui.frmPaymentHistory..Create(BaseForm)
+Gui.frmPaymentHistory..Caption("Payment History")
+Gui.frmPaymentHistory..Size(750,188)
+Gui.frmPaymentHistory..MinX(0)
+Gui.frmPaymentHistory..MinY(0)
+Gui.frmPaymentHistory..Position(0,0)
+Gui.frmPaymentHistory..AlwaysOnTop(True)
+Gui.frmPaymentHistory..FontName("Tahoma")
+Gui.frmPaymentHistory..FontSize(8.25)
+Gui.frmPaymentHistory..ControlBox(True)
+Gui.frmPaymentHistory..MaxButton(False)
+Gui.frmPaymentHistory..MinButton(False)
+Gui.frmPaymentHistory..MousePointer(0)
+Gui.frmPaymentHistory..Moveable(True)
+Gui.frmPaymentHistory..Sizeable(False)
+Gui.frmPaymentHistory..ShowInTaskBar(True)
+Gui.frmPaymentHistory..TitleBar(True)
+Gui.frmPaymentHistory..Event(UnLoad,frmPaymentHistory_UnLoad)
+Gui.frmPaymentHistory..ShowCompanyCode(False)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Create(GsGridControl)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Enabled(True)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Visible(True)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Zorder(0)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Size(746,148)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Position(2,2)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Anchor(15)
+Gui.frmPaymentHistory.GsgcPaymentHistory.Event(CellValueChanged,GsgcPaymentHistory_CellValueChanged)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+V.Global.sGridViews.Declare
+Program.External.Include.Library("GCG_6109_UniversalFunctionsLibrary.lib")
+v.Global.iRowIndex.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+Function.Intrinsic.UI.UsePixels ' Allows you to use Pixels instead of Twips throughout
+
+'Using UniversalFunctions Library to leverage some code reduction
+'Define list of all GS Grid Controls and associated data entities...
+'V.Global.sGridViews.Set("frmMain*!*GsgcSOLines*!*gvSOLines#$#frmMain*!*GsgcARBatches*!*gvARBatches#$#frmPaymentHistory*!*GsgcPaymentHistory*!*gvPaymentHistory")
+V.Global.sGridViews.Set("frmMain*!*GsgcSOLines*!*gvSOLines#$#frmMain*!*GsgcARBatches*!*gvARBatches")
+'Grab the ARC ID from the filename...  useful throughout.
+F.Intrinsic.Control.CallSub(SetARCID)
+
+'Open Database for...  stuff...
+F.ODBC.Connection!con.OpenCompanyConnection(500)
+
+'Check Database...
+F.Intrinsic.Control.CallSub(CheckDB)
+
+'Just setting a baseline for both grids...
+F.Intrinsic.Control.CallSub(DataLoader,"sKey","GsgcSOLines")
+F.Intrinsic.Control.CallSub(DataLoader,"sKey","GsgcARBatches")
+
+'load grid preferences
+F.Intrinsic.Control.CallSub(Deserialize)
+
+'Show the form...
+Gui.frmMain.txtCustomerSearch.SetFocus
+Gui.frmMain..Visible(True)
+
+Program.Sub.Main.End
+
+Program.Sub.frmMain_UnLoad.Start
+F.Intrinsic.Control.CallSub(Serialize)
+F.ODBC.Connection!con.Close
+F.Intrinsic.Control.End
+Program.Sub.frmMain_UnLoad.End
+
+Program.Sub.txtCustomerSearch_LostFocus.Start
+V.Local.iRet.Declare
+V.Local.sSQL.Declare
+F.Intrinsic.String.Build("SELECT COUNT(*) FROM V_CUSTOMER_MASTER WHERE CUSTOMER='{0}'",V.Screen.frmMain!txtCustomerSearch.Text,V.Local.sSQL)
+F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.iRet)
+F.Intrinsic.Control.If(V.Local.iRet,=,0)
+	F.Intrinsic.UI.Msgbox("Customer not found.","!")
+F.Intrinsic.Control.EndIf
+Program.Sub.txtCustomerSearch_LostFocus.End
+
+Program.Sub.txtSalesOrderSearch_LostFocus.Start
+V.Local.iRet.Declare
+V.Local.sSQL.Declare
+
+F.Intrinsic.Control.If(V.Screen.frmMain!txtCustomerSearch.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose a customer.","Choose a customer")
+	Gui.frmMain.txtCustomerSearch.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Screen.frmMain!txtSalesOrderSearch.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Please choose a sales order.","Choose a sales order")
+	Gui.frmMain.txtCustomerSearch.SetFocus
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Build("SELECT COUNT(*) FROM V_ORDER_HEADER WHERE CUSTOMER='{0}' AND ORDER_NO='{1}'",V.Screen.frmMain!txtCustomerSearch.Text,V.Screen.frmMain!txtSalesOrderSearch.Text,V.Local.sSQL)
+F.ODBC.Connection!con.ExecuteAndReturn(V.Local.sSQL,V.Local.iRet)
+F.Intrinsic.Control.If(V.Local.iRet,=,0)
+	F.Intrinsic.UI.Msgbox("Sales Order not found, or is not for this customer.","!")
+	Gui.frmMain.txtSalesOrderSearch.Text("")
+F.Intrinsic.Control.EndIf
+Program.Sub.txtSalesOrderSearch_LostFocus.End
+
+Program.Sub.cmdCustomerSearch_Click.Start
+V.Local.sRet.Declare
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.CommonBrowser(205,"",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.frmMain.txtCustomerSearch.Text(V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+Program.Sub.cmdCustomerSearch_Click.End
+
+Program.Sub.cmdSalesOrderSearch_Click.Start
+V.Local.sRet.Declare
+V.Local.sSQL.Declare
+
+V.Local.sTitles.Declare(String,"Order No.*!*Customer PO")
+V.Local.iWidths.Declare(String,"1000*!*1000")
+F.Intrinsic.String.Split(V.Local.sTitles,"*!*",V.Local.sTitles)
+F.Intrinsic.String.Split(V.Local.iWidths,"*!*",V.Local.iWidths)
+
+'BN, Oct 25 2022 added v_Order_Hist_Head for orders moved to history
+F.Intrinsic.String.Build("select ORDER_NO AS 'Order No.', CUSTOMER_PO AS 'Customer PO' from v_order_header where CUSTOMER='{0}' UNION select ORDER_NO AS 'Order No.', CUSTOMER_PO AS 'Customer PO' from v_order_Hist_Head where customer = '{0}'",V.Screen.frmMain!txtCustomerSearch.Text,V.Local.sSQL)
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Sales Order","con",V.Local.sSQL,V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.frmMain.txtSalesOrderSearch.Text(V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+Program.Sub.cmdSalesOrderSearch_Click.End
+
+Program.Sub.DataLoader.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+	
+	V.Local..BulkDeclareString(sSQL_SOLines, sSQL_ARBatches, sSQL_PaymentHistory, sColumns, sFieldNames)
+	V.Local..BulkDeclareLong(iCnt)
+		
+	F.Intrinsic.String.Build("SELECT OH.ORDER_NO AS 'So', OL.RECORD_NO AS 'Line', OL.QTY_ORIGINAL AS 'Qty', OL.PART AS 'Part', OL.LOCATION AS 'Loc', CAST(((OL.PRICE*OL.QTY_ORIGINAL)-((OL.PRICE*OL.QTY_ORIGINAL)*If(OL.Flag_Always_Discount = 'Y',OL.Discount,0)))*If(ol.VAT_RULE_ID = '7',1.16,1) AS DECIMAL(8,2)) AS 'Extended_Amt', (select SUM(S.AMT_APPLIED) from GCG_6109_PayHist S WHERE S.ORDER_NO=OL.ORDER_NO AND S.ORDER_LINE=OL.RECORD_NO) AS 'Previous Payments' , CAST(CAST(((OL.PRICE*OL.QTY_ORIGINAL)-((OL.PRICE*OL.QTY_ORIGINAL)*If(OL.Flag_Always_Discount = 'Y',OL.Discount,0)))*If(ol.VAT_RULE_ID = '7',1.16,1) AS DECIMAL(8,2)) - IFNULL((select SUM(J.AMT_APPLIED) from GCG_6109_PayHist J WHERE J.ORDER_NO=OL.ORDER_NO AND J.ORDER_LINE=OL.RECORD_NO),0) AS DECIMAL(8,2)) AS 'Current Balance', '0.00' AS 'Todays Payments', CAST(IFNULL((select sum(qty_shipped) from v_order_hist_line sl where sl.order_no=OH.ORDER_NO and sl.order_line=OL.RECORD_NO),0) AS INTEGER) AS 'Shipped' FROM V_ORDER_HEADER OH LEFT OUTER JOIN V_ORDER_LINES OL ON OH.ORDER_NO=OL.ORDER_NO LEFT OUTER JOIN GCG_6109_PayHist PH ON OH.ORDER_NO=PH.ORDER_NO and OL.RECORD_NO=PH.ORDER_LINE  WHERE OH.ORDER_NO='{0}' AND OL.PART<>'ANTICIPO' GROUP BY So, Line, Qty, Part, Loc, Extended_Amt, 'Current Balance', Shipped UNION SELECT OH.ORDER_NO AS 'So', OL.ORDER_LINE AS 'Line', OL.QTY_ORIGINAL AS 'Qty', OL.PART AS 'Part', OL.LOCATION AS 'Loc', 	CAST(((OL.PRICE*OL.QTY_ORIGINAL)-((OL.PRICE*OL.QTY_ORIGINAL)*If(OL.Flag_Always_Disc = 'Y',OL.Discount,0)))*If(ol.VAT_RULE_ID = '7',1.16,1) AS DECIMAL(8,2)) 	AS 'Extended_Amt', (select SUM(T.AMT_APPLIED) from GCG_6109_PayHist T WHERE T.ORDER_NO=OL.ORDER_NO AND T.ORDER_LINE=OL.ORDER_LINE) AS 'Previous Payments' , CAST(CAST(((OL.PRICE*OL.QTY_ORIGINAL)-((OL.PRICE*OL.QTY_ORIGINAL)*If(OL.Flag_Always_Disc = 'Y',OL.Discount,0)))*If(ol.VAT_RULE_ID = '7',1.16,1) AS DECIMAL(8,2)) - IFNULL((select SUM(K.AMT_APPLIED) from GCG_6109_PayHist K WHERE K.ORDER_NO=OL.ORDER_NO AND K.ORDER_LINE=OL.ORDER_LINE),0) AS DECIMAL(8,2)) AS 'Current Balance', '0.00' AS 'Todays Payments', CAST(IFNULL((select sum(qty_shipped) from v_order_hist_line sl where sl.order_no=OH.ORDER_NO and sl.order_line=OL.ORDER_LINE),0) AS INTEGER) AS 'Shipped' FROM V_ORDER_HIST_HEAD OH LEFT OUTER JOIN V_ORDER_HIST_LINE OL ON OH.ORDER_NO=OL.ORDER_NO AND OH.ORDER_SUFFIX=OL.ORDER_SUFFIX LEFT OUTER JOIN GCG_6109_PayHist PH ON OH.ORDER_NO=PH.ORDER_NO and OL.ORDER_LINE=PH.ORDER_LINE  WHERE OH.ORDER_NO='{0}' AND OL.PART<>'ANTICIPO' AND OL.CREDIT_MEMO_FLAG<>'Y' GROUP BY So, Line, Qty, Part, Loc, Extended_Amt, 'Current Balance', Shipped",V.Screen.frmMain!txtSalesOrderSearch.Text,V.Local.sSQL_SOLines) 
+	
+	'SQL for AR Batches
+	'(-1) * Amt_Invoice 
+	F.Intrinsic.String.Build("SELECT a.BATCH_NUM AS 'Invoice Batch', a.INVOICE AS 'Invoice Number' , a.AMT_TRANS_TOTAL AS 'Invoice Amt', Cast(IFNULL((select (-1) * Sum(y.Amt_Invoice) from V_AR_OPEN_ITEMS y left outer join v_order_hist_line m on y.invoice=m.invoice where y.INVOICE=a.INVOICE and y.BATCH_CODE=11 and m.part='ANTICIPO' Group by y.Invoice),0.00) AS DECIMAL(8,2)) AS 'Collected', CAST((select (-1) * Sum(z.Amt_Invoice) from V_AR_OPEN_ITEMS z left outer join v_order_hist_line n on z.invoice=n.invoice where z.INVOICE=a.INVOICE and BATCH_CODE=11 and n.part='ANTICIPO' group by z.Invoice) AS DECIMAL(8,2)) - CAST(IFNULL((select sum(amt_applied) from GCG_6109_PayHist y where y.INVOICE=a.INVOICE),0.00) AS DECIMAL(8,2)) AS 'Available to Apply', CAST(0 AS BIT) as 'Split / Apply' FROM V_AR_OPEN_ITEMS a LEFT OUTER JOIN V_ORDER_HIST_LINE ohl ON ohl.INVOICE=a.INVOICE WHERE a.BATCH_CODE=10 AND a.ORDER_NO='{0}' AND Collected>0 AND OHL.PART='ANTICIPO'",V.Screen.frmMain!txtSalesOrderSearch.Text,V.Local.sSQL_ARBatches)
+	
+	F.Intrinsic.Control.SelectCase(V.Args.sKey.UCase)
+		F.Intrinsic.Control.Case("GSGCSOLINES")
+
+		
+			F.Intrinsic.Control.CallSub(LoadData, "sDataTableName","dtSOLines","sFormName","frmMain","sGridControlName","GSGCSOLINES","sGridViewName","gvSOLines","sSQL",V.Local.sSQL_SOLines)
+			
+			Gui.frmMain.GSGCSOLINES.SuspendLayout()
+			'So*!*Line*!*Qty*!*Part*!*Loc*!*Extended_Amt*!*Previous Payments*!*Current Balance*!*Todays Payments*!*Shipped
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Qty","CellHAlignment","Far")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Extended_Amt","CellHAlignment","Far")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Previous Payments","CellForeColor",V.Color.Blue)
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Previous Payments","CellHAlignment","Far")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Current Balance","CellHAlignment","Far")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","CellHAlignment","Far")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","CellBackColor",V.Color.SEC-GSS-04)
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Extended_Amt","DisplayCustomNumeric","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Previous Payments","DisplayCustomNumeric","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Current Balance","DisplayCustomNumeric","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","DisplayCustomNumeric","#,###,###,##0.00")
+			
+			'Overriding default grid options so that we can edit a column...
+			Gui.frmMain.GSGCSOLINES.SetGridViewProperty("gvSOLines","OptionBehaviorEditable",True)
+			Gui.frmMain.GSGCSOLINES.SetGridViewProperty("gvSOLines","ReadOnly",False)
+			Gui.frmMain.GSGCSOLINES.SetGridViewProperty("gvSOLines","AllowAddRows",False)
+			Gui.frmMain.GSGCSOLINES.SetGridViewProperty("gvSOLines","AllowDeleteRows",False)
+			
+			'Because OptionBehaviorEditable was overridden, we need to set the ReadOnly/AllowEdit for every column again because the grid forgets anytime we change OptionBehaviorEditable
+			'This sets every column to NOT allow editing and to be READ ONLY.
+			F.Intrinsic.String.Concat("",V.DataTable.dtSOLines.FieldNames,V.Local.sFieldNames)
+			F.Intrinsic.String.Split(V.Local.sFieldNames,"*!*",V.Local.sColumns)
+			F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.sColumns.UBound,1)			
+				Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines",V.Local.sColumns(V.Local.iCnt),"AllowEdit",False)
+				Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines",V.Local.sColumns(V.Local.iCnt),"ReadOnly",True)
+			F.Intrinsic.Control.Next(V.Local.iCnt)
+			
+			'Set Editable Column(s)
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","AllowEdit",True)
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","ReadOnly",False)
+			
+			'Make sure we can only enter appropriate data types
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","EditMaskType","numeric")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","EditMask","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","EditMaskAsDisplayFormat",True)
+			
+			'Caption
+			'Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","Caption","")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","So","Caption","PEDIDO")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Line","Caption","LINEA")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Qty","Caption","CANTIDAD")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Part","Caption","PARTE")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Loc","Caption","LOC")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Extended_Amt","Caption","IMPORTE")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Previous Payments","Caption","PAGOS")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Current Balance","Caption","SALDO")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","Caption","APLICACIÓN")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Shipped","Caption","DESPACHOS")
+			
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","So","ToolTip","SO")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Line","ToolTip","Line")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Qty","ToolTip","Qty")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Part","ToolTip","Part")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Loc","ToolTip","Loc")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Extended_Amt","ToolTip","Extended Amt")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Previous Payments","ToolTip","Previous Payments")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Current Balance","ToolTip","Current Balance")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Todays Payments","ToolTip","Today Payments")
+			Gui.frmMain.GSGCSOLINES.SetColumnProperty("gvSOLines","Shipped","ToolTip","Shipped")	
+			
+			Gui.frmMain.GSGCSOLINES.AddSummaryItem("gvSOLines","Extended_Amt","Extended_Amt","Sum","","","#,###,###,##0.00")	
+			Gui.frmMain.GSGCSOLINES.AddSummaryItem("gvSOLines","Previous Payments","prev","Sum","","","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.AddSummaryItem("gvSOLines","Current Balance","Cur","Sum","","","#,###,###,##0.00")
+			Gui.frmMain.GSGCSOLINES.AddSummaryItem("gvSOLines","Todays Payments","Todaypayment","Sum","","","#,###,###,##0.00")
+			
+			Gui.frmMain.GSGCSOLINES.ResumeLayout()
+			
+		F.Intrinsic.Control.Case("GSGCARBATCHES")
+			F.Intrinsic.Control.CallSub(LoadData, "sDataTableName","dtARBatches","sFormName","frmMain","sGridControlName","GSGCARBATCHES","sGridViewName","gvARBatches","sSQL",V.Local.sSQL_ARBatches)
+			
+			Gui.frmMain.GSGCARBATCHES.SuspendLayout()
+			
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Amt","CellHAlignment","Far")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Collected","CellHAlignment","Far")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Available To Apply","CellHAlignment","Far")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Amt","DisplayCustomNumeric","#,###,###,##0.00")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Collected","DisplayCustomNumeric","#,###,###,##0.00")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Available To Apply","DisplayCustomNumeric","#,###,###,##0.00")
+						
+			'Overriding default grid options so that we can edit a column...
+			Gui.frmMain.GSGCARBATCHES.SetGridViewProperty("gvARBatches","OptionBehaviorEditable",True)
+			Gui.frmMain.GSGCARBATCHES.SetGridViewProperty("gvARBatches","ReadOnly",False)
+			Gui.frmMain.GSGCARBATCHES.SetGridViewProperty("gvARBatches","AllowAddRows",False)
+			Gui.frmMain.GSGCARBATCHES.SetGridViewProperty("gvARBatches","AllowDeleteRows",False)
+			
+			'Because OptionBehaviorEditable was overridden, we need to set the ReadOnly/AllowEdit for every column again because the grid forgets anytime we change OptionBehaviorEditable
+			'This sets every column to NOT allow editing and to be READ ONLY.
+			F.Intrinsic.String.Concat("",V.DataTable.dtARBatches.FieldNames,V.Local.sFieldNames)
+			F.Intrinsic.String.Split(V.Local.sFieldNames,"*!*",V.Local.sColumns)
+			F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.sColumns.UBound,1)			
+				Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches",V.Local.sColumns(V.Local.iCnt),"AllowEdit",False)
+				Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches",V.Local.sColumns(V.Local.iCnt),"ReadOnly",True)
+			F.Intrinsic.Control.Next(V.Local.iCnt)
+			
+			'Set Editable Column(s)
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Split / Apply","AllowEdit",True)
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Split / Apply","ReadOnly",False)
+			
+			'Invoice Batch*!*Invoice Number*!*Invoice Amt*!*Collected*!*Available to Apply*!*Split / Apply   
+			'Caption
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Batch","Caption","LOTE")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Number","Caption","FACTURA")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Amt","Caption","IMPORTE")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Collected","Caption","COBRADO")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Available to Apply","Caption","POR APLICAR")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Split / Apply","Caption","SEL.")
+			'Tooltip
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Batch","ToolTip","Invoice Batch")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Number","ToolTip","Invoice")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Invoice Amt","ToolTip","Invoice Amt")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Collected","ToolTip","Collected")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Available to Apply","ToolTip","Available to Apply")
+			Gui.frmMain.GSGCARBATCHES.SetColumnProperty("gvARBatches","Split / Apply","ToolTip","Split / Apply")	
+			
+			Gui.frmMain.GSGCARBATCHES.AddSummaryItem("gvARBatches","Invoice Amt","Invoice Amt","Sum","","","#,###,###,##0.00")	
+			Gui.frmMain.GSGCARBATCHES.AddSummaryItem("gvARBatches","Collected","Collected","Sum","","","#,###,###,##0.00")	
+			Gui.frmMain.GSGCARBATCHES.AddSummaryItem("gvARBatches","Available to Apply","Avail","Sum","","","#,###,###,##0.00")	
+			
+			
+			Gui.frmMain.GSGCARBATCHES.ResumeLayout()
+		
+		'I felt obligated to tell the user/programmer when an undefined key was encountered that way they weren't left wondering why nothing was happening.
+		F.Intrinsic.Control.CaseElse
+			F.Intrinsic.String.Build("[Sub:{0} Key:{1}] This key was not specified.",V.Ambient.CurrentSubroutine,V.Args.sKey,V.Local.sError)
+			F.Intrinsic.UI.Msgbox(V.Local.sError)
+		
+	F.Intrinsic.Control.EndSelect
+	
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Catching,"Sub",V.Ambient.CurrentSubroutine,"ErrorNo",V.Ambient.ErrorNumber,"ErrorDesc",V.Ambient.ErrorDescription) 
+F.Intrinsic.Control.EndTry
+Program.Sub.DataLoader.End
+
+Program.Sub.GsGC_RowCellClick_Universal.Start
+'V.Args.Screen: FRMMAIN
+'V.Args.ControlName:GSGCDATA0
+'V.Args.EventType: ROWCELLCLICK
+'V.Args.Column: @Part
+'V.Args.RowIndex: 0
+'V.Args.GridView: GVDATA0
+
+V.Local..BulkDeclareString(sSQL_PaymentHistory, sOrderNo, sOrderLine)
+V.Local..BulkDeclareFloat(fAvailableToApply)
+
+'This sub call will handle all of the basic built in core data entity stuff...
+'linking to S&D, PO View, SO View, WO View, and DCS Linking
+'@Part, @SO, @PO, @WO, PART, SO, PO, WO columns all handled in the basic sense.
+F.Intrinsic.Control.CallSub(GetActiveGridView,"ControlName",V.Args.ControlName)
+F.Intrinsic.Control.CallSub(RowCellClick_HandleCoreEntity, "Screen", V.Args.Screen, "ControlName", V.Args.ControlName, "EventType", V.Args.EventType, "Column", V.Args.Column, "RowIndex", V.Args.RowIndex, "GridView", V.Args.GridView)
+
+'Handle anything not handled...
+F.Intrinsic.Control.SelectCase(V.Args.ControlName.UCase)
+'	If GridView0 was interacted with, do this...
+	F.Intrinsic.Control.Case("GSGCSOLINES")
+		F.Intrinsic.Control.SelectCase(V.Args.Column.UCase)
+			F.Intrinsic.Control.Case("PREVIOUS PAYMENTS")
+				Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName(V.Args.GridView,"So",V.Args.RowIndex,v.Local.sOrderNo)
+				Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName(V.Args.GridView,"Line",V.Args.RowIndex,v.Local.sOrderLine)
+
+				'working
+				F.Intrinsic.String.Build("SELECT rtrim(Batch) as Batch,Invoice,Order_No,Order_Line,Amt_Applied,ID,GS_User,Last_Updated,Amt_Applied as Amt_Applied2,Convert(0,SQL_Float) as Current_Balance,Order_No + Order_Line as OOLine,Convert(0,SQL_float) as Collected,Convert(0,SQL_float) as AvailableToApply FROM GCG_6109_PayHist WHERE ORDER_NO='{0}' AND ORDER_LINE='{1}' and amt_applied <> 0",v.Local.sOrderNo,v.Local.sOrderLine,V.Local.sSQL_PaymentHistory)
+				F.Intrinsic.Control.CallSub(LoadData, "sDataTableName","dtPaymentHistory","sFormName","frmPaymentHistory","sGridControlName","GsgcPaymentHistory","sGridViewName","gvPaymentHistory","sSQL",V.Local.sSQL_PaymentHistory)
+				
+				f.Data.DataTable.AddExpressionColumn("dtSOLines","OOLine","String","SO + Line")
+				
+				f.Data.Dictionary.CreateFromDatatable("dictCurrentBalance","dtSOLines","OOLine","Current Balance")
+				F.Data.DataTable.RemoveColumn("dtSOLines","OOLine")
+				f.Data.Dictionary.SetDefaultReturn("dictCurrentBalance",0)
+				f.Data.DataTable.FillFromDictionary("dtPaymentHistory","dictCurrentBalance","OOLine","Current_Balance")
+				f.Data.Dictionary.Close("dictCurrentBalance")
+			
+				
+				f.Data.DataTable.AddExpressionColumn("dtARBatches","BatchTrim","String","Trim([Invoice Batch])")
+				f.Data.Dictionary.CreateFromDatatable("dictCollected","dtARBatches","BatchTrim","Collected")
+				f.Data.Dictionary.SetDefaultReturn("dictCollected",0)
+				f.Data.DataTable.FillFromDictionary("dtPaymentHistory","dictCollected","Batch","Collected")
+				f.Data.Dictionary.Close("dictCollected")
+				
+				f.Data.Dictionary.CreateFromDatatable("dictAvailable","dtARBatches","BatchTrim","Available To Apply")
+				f.Data.Dictionary.SetDefaultReturn("dictAvailable",0)
+				f.Data.DataTable.FillFromDictionary("dtPaymentHistory","dictAvailable","Batch","AvailableToApply")
+				f.Data.Dictionary.Close("dictAvailable")
+				f.Data.DataTable.RemoveColumn("dtARBatches","BatchTrim")			
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied","AllowEdit",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied","ReadOnly",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied","DisplayCustomNumeric","#,###,###,##0.00")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied","CellBackColor",V.Color.SEC-GSS-04)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Last_Updated","DisplayCustomDatetime","d")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Last_Updated","CellHAlignment","far")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetGridViewProperty("gvPaymentHistory","OptionBehaviorEditable",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetGridViewProperty("gvPaymentHistory","ReadOnly",False)
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Batch","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Batch","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Invoice","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Invoice","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Order_No","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Order_No","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Order_Line","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Order_Line","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Id","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Id","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Gs_User","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Gs_User","ReadOnly",True)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Last_Updated","AllowEdit",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Last_Updated","ReadOnly",True)
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied2","Visible",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Current_Balance","Visible",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","OOLine","Visible",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Collected","Visible",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AvailableToApply","Visible",False)
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied2","AllowShowHide",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Current_Balance","AllowShowHide",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","OOLine","AllowShowHide",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Collected","AllowShowHide",False)
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AvailableToApply","AllowShowHide",False)
+
+				'Batch*!*INVOICE*!*ORDER_NO*!*ORDER_LINE*!*AMT_APPLIED*!*ID*!*GS_USER*!*LAST_UPDATED*!*Amt_Applied2*!*Current_Balance*!*OOLine*!*Collected*!*AvailableToApply
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Batch","Caption","LOTE")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","INVOICE","Caption","FACTURA")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ORDER_NO","Caption","PEDIDO")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ORDER_LINE","Caption","LINEA")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AMT_APPLIED","Caption","APLICADO")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ID","Caption","ID")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","GS_USER","Caption","USUARIO")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","LAST_UPDATED","Caption","ULTIMO CAMBIO")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied2","Caption","Amt_Applied2")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Current_Balance","Caption","Current_Balance")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","OOLine","Caption","OOLine")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Collected","Caption","Collected")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AvailableToApply","Caption","AvailableToApply")
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Batch","ToolTip","Batch")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","INVOICE","ToolTip","Invoice")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ORDER_NO","ToolTip","Order No")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ORDER_LINE","ToolTip","Order Line")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AMT_APPLIED","ToolTip","Amt Applied")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","ID","ToolTip","ID")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","GS_USER","ToolTip","GS User")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","LAST_UPDATED","ToolTip","Last Updated")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Amt_Applied2","ToolTip","Amt_Applied2")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Current_Balance","ToolTip","Current_Balance")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","OOLine","ToolTip","OOLine")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","Collected","ToolTip","Collected")
+				Gui.frmPaymentHistory.GsgcPaymentHistory.SetColumnProperty("gvPaymentHistory","AvailableToApply","ToolTip","AvailableToApply")	
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.AddSummaryItem("gvPaymentHistory","AMT_APPLIED","AMT_APPLIED","Sum","","","#,###,###,##0.00")	
+				
+				Gui.frmPaymentHistory.GsgcPaymentHistory.Visible(True)
+				Gui.frmPaymentHistory..Visible(True)
+		F.Intrinsic.Control.EndSelect
+F.Intrinsic.Control.EndSelect
+Program.Sub.GsGC_RowCellClick_Universal.End
+
+Program.Sub.gsgcSOLines_CellValueChanged.Start
+f.Intrinsic.Control.Try
+	v.Local.fTodayPayments.Declare
+	v.Local.fCurrentBalance.Declare
+	
+	f.Intrinsic.Control.If(v.Args.Column.UCase,=,"TODAYS PAYMENTS")
+		v.Local.fTodayPayments.Set(v.DataTable.dtSOLines(v.Args.RowIndex).TODAYS PAYMENTS.FieldValString)
+		v.Local.fCurrentBalance.Set(v.DataTable.dtSOLines(v.Args.RowIndex).Current Balance.FieldValString)
+		F.Intrinsic.Control.If(v.Local.fTodayPayments,>,v.Local.fCurrentBalance)
+			f.Intrinsic.UI.Msgbox("Today Payments must not be greater than Current Balance")
+			f.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf		
+	f.Intrinsic.Control.EndIf	
+	
+	gui.frmMain.gsgcSOLines.MainView("gvSOLines")
+	
+f.Intrinsic.Control.Catch
+	f.Intrinsic.UI.Msgbox(v.Ambient.ErrorDescription)
+f.Intrinsic.Control.EndTry
+Program.Sub.gsgcSOLines_CellValueChanged.End
+
+Program.Sub.cmdSplitAsSalesRule_Click.Start
+V.Local..BulkDeclareFloat(fTotalBalance,fLineCurrentBalance,fLinePercentToApply,fAllocatedAmount,fTotalToSplitApply,fAvailableToApply)
+V.Local..BulkDeclareLong(iLines,iCnt,iRowCount)
+V.Local..BulkDeclareBoolean(bSplitApply)
+
+v.Local.fTodayPayments.Declare
+v.Local.fCurrentBalance.Declare
+v.Local.bInvalid.Declare
+v.Local.fCumulated.Declare
+
+'Get Total To Split from ARBatches
+Gui.frmMain.gsgcARBatches.GetRowCount("gvARBatches",V.Local.iLines)
+F.Intrinsic.Math.Sub(V.Local.iLines,1,V.Local.iLines)
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Split / Apply",V.Local.iCnt,V.Local.bSplitApply)
+	F.Intrinsic.Control.If(V.Local.bSplitApply)
+		Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Available To Apply",V.Local.iCnt,V.Local.fAvailableToApply)
+		F.Intrinsic.Math.Add(V.Local.fTotalToSplitApply,V.Local.fAvailableToApply,V.Local.fTotalToSplitApply)
+		F.Intrinsic.Math.Add(V.Local.iRowCount,1,V.Local.iRowCount)
+		'If more than 1 AR Batch is selected, alert user to select a single record then exit.
+		F.Intrinsic.Control.If(V.Local.iRowCount,>,1)
+			F.Intrinsic.UI.Msgbox("Please select a single AR Batch to apply.")
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+'Get Total Balance from SO Lines
+Gui.frmMain.gsgcSOLines.GetRowCount("gvSOLines",V.Local.iLines)
+V.Local.iLines.Set(V.Local.iLines.--)
+V.Local.iCnt.Set(0)
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","Current Balance",V.Local.iCnt,V.Local.fLineCurrentBalance)
+	F.Intrinsic.Math.Add(V.Local.fTotalBalance,V.Local.fLineCurrentBalance,V.Local.fTotalBalance)
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+'Calculate Percentages for SO Lines, calculate amount of split payment to apply, update grid.
+V.Local.iCnt.Set(0)
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","Current Balance",V.Local.iCnt,V.Local.fLineCurrentBalance)	
+	f.Intrinsic.Control.If(v.Local.iCnt,<,v.Local.iLines)
+		F.Intrinsic.Math.Div(V.Local.fLineCurrentBalance,V.Local.fTotalBalance,V.Local.fLinePercentToApply)
+		F.Intrinsic.Math.Mult(V.Local.fLinePercentToApply,V.Local.fTotalToSplitApply,V.Local.fAllocatedAmount)
+		F.Intrinsic.Math.Round(V.Local.fAllocatedAmount,2,V.Local.fAllocatedAmount)		
+		f.Intrinsic.Math.Add(v.Local.fCumulated,v.Local.fAllocatedAmount,v.Local.fCumulated)		
+	f.Intrinsic.Control.Else
+		f.Intrinsic.Math.Sub(V.Local.fTotalToSplitApply,V.Local.fCumulated,V.Local.fAllocatedAmount)
+	f.Intrinsic.Control.EndIf
+	
+	Gui.frmMain.gsgcSOLines.SetCellValueByColumnName("gvSOLines","Todays Payments",V.Local.iCnt,V.Local.fAllocatedAmount)
+	
+	v.Local.fTodayPayments.Set(v.DataTable.dtSOLines(v.Local.iCnt).TODAYS PAYMENTS.FieldValString)
+	v.Local.fCurrentBalance.Set(v.DataTable.dtSOLines(v.Local.iCnt).Current Balance.FieldValString)
+	F.Intrinsic.Control.If(v.Local.fTodayPayments,>,v.Local.fCurrentBalance)		
+		v.Local.bInvalid.Set(True)
+	F.Intrinsic.Control.EndIf
+	
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+f.Intrinsic.Control.If(v.Local.bInvalid)
+	f.Intrinsic.UI.Msgbox("Today Payments must not be greater than Current Balance")
+f.Intrinsic.Control.EndIf
+
+Program.Sub.cmdSplitAsSalesRule_Click.End
+
+Program.Sub.cmdAccept_Save_Click.Start
+V.Local..BulkDeclareString(sBatch, sInvoice, sOrder_No, sOrder_Line, sSQL, sMsg)
+V.Local..BulkDeclareFloat(fAvailableToApply, fAmt_Applied, fTotalAmt_Applied, fDifference)
+V.Local..BulkDeclareLong(iCnt, iLines, iRowCount)
+V.Local..BulkDeclareBoolean(bSplitApply, bSelectionExists)
+v.Local.sRet.Declare
+
+
+f.Data.Datatable.Select("dtSOLines","[Todays Payments] > [Current Balance]",v.Local.sRet)
+f.Intrinsic.Control.If(v.Local.sRet,<>,"***NORETURN***")
+	f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.sRet.UBound,1)
+		f.Intrinsic.Math.Add(v.Local.sRet(v.Local.iCnt),1,v.Local.sRet(v.Local.iCnt))
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Intrinsic.String.Join(v.Local.sRet,", ",v.Local.sRet)
+	f.Intrinsic.String.Build("Totays Payment is greater than Current Balance at row: {0}",v.Local.sRet,v.Local.sRet)
+	f.Intrinsic.UI.Msgbox(v.Local.sRet,"Invalid")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+Gui.frmMain.gsgcARBatches.GetRowCount("gvARBatches",V.Local.iLines)
+V.Local.iLines.Set(V.Local.iLines.--)
+V.Local.iCnt.Set(0)
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Split / Apply",V.Local.iCnt,V.Local.bSplitApply)
+	F.Intrinsic.Control.If(V.Local.bSplitApply)
+		V.Local.bSelectionExists.Set(True)
+		Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Invoice Batch",V.Local.iCnt,V.Local.sBatch)
+		Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Invoice Number",V.Local.iCnt,V.Local.sInvoice)
+		Gui.frmMain.gsgcARBatches.GetCellValueByColumnName("gvARBatches","Available To Apply",V.Local.iCnt,V.Local.fAvailableToApply)
+		
+		'If more than 1 AR Batch is selected, alert user to select a single record then exit.
+		F.Intrinsic.Math.Add(V.Local.iRowCount,1,V.Local.iRowCount)
+		F.Intrinsic.Control.If(V.Local.iRowCount,>,1)
+			F.Intrinsic.UI.Msgbox("Please select a single AR Batch to apply.")
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+		
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Intrinsic.Control.If(V.Local.bSelectionExists,=,False)
+	F.Intrinsic.UI.Msgbox("Please select an AR Batch to apply.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Gui.frmMain.gsgcSOLines.GetRowCount("gvSOLines",V.Local.iLines)
+V.Local.iLines.Set(V.Local.iLines.--)
+V.Local.iCnt.Set(0)
+
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","Todays Payments",V.Local.iCnt,V.Local.fAmt_Applied)
+	
+	'Make sure no negative amounts are attempted to be applied.
+	F.Intrinsic.Control.If(V.Local.fAmt_Applied,<,0)
+		F.Intrinsic.UI.Msgbox("Todays Payment(s) to apply must be a positive number.")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Math.Round(V.Local.fAmt_Applied,2,V.Local.fAmt_Applied)
+	F.Intrinsic.Math.Round(V.Local.fTotalAmt_Applied,2,V.Local.fTotalAmt_Applied)
+	F.Intrinsic.Math.Add(V.Local.fAmt_Applied,V.Local.fTotalAmt_Applied,V.Local.fTotalAmt_Applied)
+	F.Intrinsic.Math.Round(V.Local.fAmt_Applied,2,V.Local.fAmt_Applied)
+	
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Intrinsic.Control.If(V.Local.fTotalAmt_Applied,>,V.Local.fAvailableToApply)
+	F.Intrinsic.Math.Sub(V.Local.fAvailableToApply,V.Local.fTotalAmt_Applied,V.Local.fDifference)
+	F.Intrinsic.Math.Round(V.Local.fDifference,2,V.Local.fDifference)
+	F.Intrinsic.String.Build("Todays Payments exceed Amount Available.{0}{0}Todays Payments: ${1}{0}Amount Available: ${2}{0}{0}DIFFERENCE: ${3}",V.Ambient.NewLine,V.Local.fTotalAmt_Applied,V.Local.fAvailableToApply,V.Local.fDifference,V.Local.sMsg)
+	F.Intrinsic.UI.Msgbox(V.Local.sMsg,"Error")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Gui.frmMain.gsgcSOLines.GetRowCount("gvSOLines",V.Local.iLines)
+V.Local.iLines.Set(V.Local.iLines.--)
+V.Local.iCnt.Set(0)
+
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.iLines,1)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","So",V.Local.iCnt,V.Local.sOrder_No)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","Line",V.Local.iCnt,V.Local.sOrder_Line)
+	Gui.frmMain.gsgcSOLines.GetCellValueByColumnName("gvSOLines","Todays Payments",V.Local.iCnt,V.Local.fAmt_Applied)
+	
+	'Insert payment records.
+	F.Intrinsic.String.Build("INSERT INTO GCG_6109_PayHist (BATCH, INVOICE, ORDER_NO, ORDER_LINE, AMT_APPLIED, GS_USER, LAST_UPDATED) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",V.Local.sBatch,V.Local.sInvoice,V.Local.sOrder_No,V.Local.sOrder_Line,V.Local.fAmt_Applied,V.Caller.User,V.Ambient.Date.FormatYYYY-MM-DD,V.Local.sSQL)
+	F.ODBC.Connection!con.Execute(V.Local.sSQL)
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Intrinsic.Control.CallSub(cmdSearch_Click)
+
+Program.Sub.cmdAccept_Save_Click.End
+
+Program.Sub.cmdSearch_Click.Start
+'Grab some data, load a grid, wash rinse repeat...
+F.Intrinsic.Control.CallSub(DataLoader,"sKey","GsgcSOLines")
+F.Intrinsic.Control.CallSub(DataLoader,"sKey","GsgcARBatches")
+Program.Sub.cmdSearch_Click.End
+
+Program.Sub.frmPaymentHistory_UnLoad.Start
+Gui.frmPaymentHistory.GsgcPaymentHistory.ClearRows("gvPaymentHistory")
+Gui.frmPaymentHistory..Visible(False)
+Program.Sub.frmPaymentHistory_UnLoad.End
+
+Program.Sub.GsgcPaymentHistory_CellValueChanged.Start
+V.Local..BulkDeclareString(sSQL, sBatch, sInvoice, sOrderNo, sOrderLine, sRet)
+V.Local..BulkDeclareFloat(fCollected, fAvailable, fAmtApplied, fNewAmt)
+V.Local..BulkDeclareLong(iCnt, iID)
+v.Local.fInvoice.Declare
+v.Local.fPaid.Declare
+v.Local.fRestoPay.Declare
+v.Local.fHold.Declare
+v.Local.fOriginalAmtApplied.Declare
+v.Local.fCurrentBalance.Declare
+v.Local.fAvailableToApply.Declare
+
+f.Intrinsic.Control.If(v.Args.Column.UCase,=,"AMT_APPLIED")
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","BATCH",V.Args.RowIndex,V.Local.sBatch.Trim)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","INVOICE",V.Args.RowIndex,V.Local.sInvoice.Trim)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","ORDER_NO",V.Args.RowIndex,V.Local.sOrderNo.Trim)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","ID",V.Args.RowIndex,V.Local.iID)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","Amt_applied2",V.Args.RowIndex,V.Local.fOriginalAmtApplied)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","Current_Balance",V.Args.RowIndex,V.Local.fCurrentBalance)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","Collected",V.Args.RowIndex,V.Local.fCollected)
+	Gui.[V.Args.Screen].[V.Args.ControlName].GetCellValueByColumnName("gvPaymentHistory","AvailableToApply",V.Args.RowIndex,V.Local.fAvailableToApply)
+	
+	F.Intrinsic.Control.If(V.Args.Value,<,0)
+		F.Intrinsic.UI.Msgbox("Amount Applied must be greater than 0.  Cannot save.")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf	
+	
+	f.Intrinsic.Math.Add(v.Local.fCurrentBalance,v.Local.fOriginalAmtApplied,v.Local.fHold)
+	f.Intrinsic.Math.Sub(v.Local.fHold,v.Args.Value,v.Local.fHold)
+	f.Intrinsic.Control.If(v.Local.fHold,<,0)
+		f.Intrinsic.UI.Msgbox("Amount Applied is invalid as it would make Current Balance negative.","Invalid number")
+		f.Data.DataTable.SetValue("dtPaymentHistory",v.Args.RowIndex,"Amt_Applied",v.Local.fOriginalAmtApplied)
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.If(v.Args.Value,>,v.Local.fOriginalAmtApplied)
+		f.Intrinsic.Math.Sub(v.Args.Value,v.Local.fOriginalAmtApplied,v.Local.fHold)
+		f.Intrinsic.Control.If(v.Local.fHold,>,v.Local.fAvailableToApply)
+			f.Intrinsic.UI.Msgbox("Amount Applied is invalid as it would exeed Amount Collected (Available Amount To Apply)","Invalid number")
+			f.Data.DataTable.SetValue("dtPaymentHistory",v.Args.RowIndex,"Amt_Applied",v.Local.fOriginalAmtApplied)
+			f.Intrinsic.Control.ExitSub
+		f.Intrinsic.Control.EndIf		
+	f.Intrinsic.Control.EndIf
+	
+	'Still here...  everything checks out.
+	F.Intrinsic.String.Build("UPDATE GCG_6109_PayHist SET AMT_APPLIED='{0}', GS_USER='{1}', LAST_UPDATED='{2}' WHERE ID='{3}'",V.Args.Value.Trim,V.Caller.User.Trim,V.Ambient.Date.FormatYYYY-MM-DD,V.Local.iID.Trim,V.Local.sSQL)
+	F.ODBC.Connection!con.Execute(V.Local.sSQL)
+	
+	gui.frmPaymentHistory..Visible(False)
+	f.Intrinsic.Control.BlockEvents
+		f.Intrinsic.Control.CallSub(cmdSearch_Click)
+	f.Intrinsic.Control.UnBlockEvents
+	
+	gui.frmPaymentHistory.GsgcPaymentHistory.MainView("gvPaymentHistory")
+
+f.Intrinsic.Control.EndIf
+Program.Sub.GsgcPaymentHistory_CellValueChanged.End
+
+Program.Sub.CheckDB.Start
+V.Local..BulkDeclareBoolean(bExists)
+F.ODBC.Connection!con.TableExists("GCG_6109_PayHist",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.ODBC.Connection!con.Execute("CREATE TABLE GCG_6109_PayHist (BATCH CHAR(6) NOT NULL, INVOICE CHAR(7) NOT NULL, ORDER_NO CHAR(7) NOT NULL, ORDER_LINE CHAR(4) NOT NULL, AMT_APPLIED NUMERIC(8,2) DEFAULT '0.00' NOT NULL, ID IDENTITY DEFAULT '0' CONSTRAINT "UK_ID" UNIQUE USING 1, GS_USER CHAR(8) NOT NULL, LAST_UPDATED DATE DEFAULT '1900-01-01' NOT NULL );")
+	F.ODBC.Connection!con.Execute("CREATE INDEX GCG_6109_PayHistK00 ON GCG_6109_PayHist ( BATCH, ORDER_NO );")
+F.Intrinsic.Control.EndIf
+
+Program.Sub.CheckDB.End
+
+Program.Sub.Comments.Start
+${$5$}$20.1.8315.16327$}$1
+${$6$}$bnguyen$}$20221103131825923$}$tqzwddZCkmoVRWHEL6DZymEEseDhOdziirnjNXDiq1vIgE/NqEBGMWjrfHdFO9JCYi5WGyDn6T8=
+Program.Sub.Comments.End
